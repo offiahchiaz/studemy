@@ -11,12 +11,13 @@ const passport = require('passport');
 
 const secret = require('./config/secret');
 const mainRoutes = require('./routes/main');
+const userRoutes = require('./routes/user');
 
 const app = express();
 const port = secret.port;
 
 mongoose.connect(secret.MongoURI, {useNewUrlParser: true})
-    .then(() => console.log('database connected...'))
+    .then(() => console.log('Database connected...'))
     .catch((err) => console.log(err));
 
 app.use(express.static(__dirname + '/public'));
@@ -45,6 +46,7 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 
 app.use(mainRoutes);
+app.use(userRoutes);
 
 
 app.listen(port, (err) => {
