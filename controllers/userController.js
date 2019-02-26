@@ -14,3 +14,7 @@ exports.login_post = (passport.authenticate('local-login', {
     failureMessage: '/login',
     failureFlash: true
 })); 
+
+exports.signup_get = (req, res, next) => {
+    res.render('accounts/signup', {errors: req.flash('errors')});
+};
