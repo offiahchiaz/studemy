@@ -15,4 +15,7 @@ router.get('/signup', user_controller.signup_get);
 // POST request /signup
 router.post('/signup', user_controller.signup_post);
 
+// GET request /profile
+router.get('/profile', user_controller.profile_get);
+
 module.exports = router;

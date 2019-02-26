@@ -42,3 +42,14 @@ exports.signup_post = (req, res, next) => {
     });
     
 };
+
+exports.profile_get = (req, res, next) => {
+    User
+        .findOne({_id: req.user._id})
+        .populate(history.item)
+        .exec((err, foundUser) => {
+            if (err) return next(err);
+
+            res.render('accounts/profile', {user: foundUser});
+        });
+};
