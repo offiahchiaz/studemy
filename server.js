@@ -9,6 +9,9 @@ const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const passport = require('passport');
 
+
+const mainRoutes = require('./routes/main');
+
 const app = express();
 const port = process.env.PORT || 7000;
 
@@ -20,13 +23,7 @@ app.use(cookieParser());
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    res.json({
-        app: 'Welcome to Studemy',
-        author: 'Offiah Chiazor',
-        title: 'Web Developer'
-    });
-});
+app.use(mainRoutes);
 
 
 app.listen(port, (err) => {
