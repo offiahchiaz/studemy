@@ -53,3 +53,8 @@ exports.profile_get = (req, res, next) => {
             res.render('accounts/profile', {user: foundUser});
         });
 };
+
+exports.logout_get = (req, res) => {
+    res.logout();
+    res.redirect('/');
+};
