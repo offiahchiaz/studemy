@@ -20,6 +20,9 @@ const UserSchema = new Schema({
         type: String, 
         minlength: 6
     },
+    picture: {
+        type: String
+    },
     address: {
         type: String
     },
