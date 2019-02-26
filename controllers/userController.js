@@ -7,4 +7,10 @@ const User = require('../models/user');
 exports.login_get = (req, res, next) => {
     if (req.user) return res.redirect('/');
     res.render('accounts/login', {message: req.flash('loginMessage')});
-}
+};
+
+exports.login_post = (passport.authenticate('local-login', {
+    successRedirect: '/profile',
+    failureMessage: '/login',
+    failureFlash: true
+})); 
