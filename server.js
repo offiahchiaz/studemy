@@ -7,6 +7,7 @@ const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 
 const secret = require('./config/secret');
@@ -28,7 +29,8 @@ app.use(cookieParser());
 app.use(session({
     resave: true,
     saveUninitialized: true,
-    secret: secret.secretKey
+    secret: secret.secretKey,
+    store: new MongoStore({url: secret.MongoURI, autoReconnect: true})
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -36,6 +38,7 @@ app.use(passport.session());
 
 // Global vars
 app.use((req, res, next) => {
+    //res.locals.user = req.user;
     res.locals.user = req.user;
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');

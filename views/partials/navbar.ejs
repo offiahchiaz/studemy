@@ -41,14 +41,36 @@
                 </ul>
             </li>
 
-            <li>
+            <% if (user) { %> 
+                <li>
                 <a href="/cart" class="glyphicon glyphicon-shopping-cart">
                     <span class="badge"></span>
                 </a>
             </li>
+            <% } else { %>
+                <li>
+                <a href="/cart" class="glyphicon glyphicon-shopping-cart">
+                    <span class="badge"></span>
+                </a>
+            </li>
+            <% } %>
 
-            <li><a class="btn btn-default" href="/login">Log In</a></li>
-            <li><a class="btn btn-default" href="/signup">Sign Up</a></li>
+            <% if (!user) { %> 
+
+                <li><a class="btn btn-default" href="/login">Log In</a></li>
+                <li><a class="btn btn-default" href="/signup">Sign Up</a></li>
+            <% } else { %>
+
+                 <li> 
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome, <%= user.firstname %></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </li>
+
+            <% } %>
+            
         </ul>
 
     </div>

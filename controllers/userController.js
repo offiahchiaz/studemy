@@ -36,7 +36,12 @@ exports.signup_post = (req, res, next) => {
         } else {
             user.save((err, user) => {
                 if (err) return next(err);
-                res.redirect('/profile');
+
+                req.logIn(user, (err) => {
+                    if (err) return next(err);
+
+                    res.redirect('/profile');
+                })
             });
         }
     });
@@ -44,17 +49,14 @@ exports.signup_post = (req, res, next) => {
 };
 
 exports.profile_get = (req, res, next) => {
-    User
-        .findOne({_id: req.user._id})
-        .populate(history.item)
-        .exec((err, foundUser) => {
-            if (err) return next(err);
-
-            res.render('accounts/profile', {user: foundUser});
-        });
+    
+    User.findOne({_id: req.user._id}, (err, foundUser) => {
+        if (err) return next(err);
+        res.render('accounts/profile', {user: foundUser});
+    });
 };
 
 exports.logout_get = (req, res) => {
-    res.logout();
+    req.logout();
     res.redirect('/');
 };
