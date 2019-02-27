@@ -11,6 +11,9 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 
 const secret = require('./config/secret');
+const Category = require('./models/category');
+
+const adminRoutes = require('./routes/admin');
 const mainRoutes = require('./routes/main');
 const userRoutes = require('./routes/user');
 
@@ -38,16 +41,24 @@ app.use(passport.session());
 
 // Global vars
 app.use((req, res, next) => {
-    //res.locals.user = req.user;
     res.locals.user = req.user;
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     next();
 });
+app.use((req, res, next) => {
+    Category.find({}, (err, categories) => {
+        if (err) next (err);
+        res.locals.categories = categories;
+        next();
+    });
+});
+
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 
+app.use(adminRoutes);
 app.use(mainRoutes);
 app.use(userRoutes);
 

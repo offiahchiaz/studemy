@@ -12,8 +12,12 @@
 
         <ul class="nav navbar-nav navbar-left">
             <li>
-                <a class="dropdown-toggle" data-toggle="dropdown">Categories</a>
-                <ul class="dropdown-menu"></ul>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">Categories</a>
+                <ul class="dropdown-menu">
+                    <% categories.forEach((category) => { %>
+                        <li><a href="/course/<%= category.name %>"><%= category.name %></a></li>
+                    <% }) %>
+                </ul>
             </li>
         </ul>
 
@@ -26,7 +30,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a class="dropdown-toggle" data-toggle="dropdown">Studemy For Business</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">Studemy For Business</a>
                 <ul class="dropdown-menu">
                     <li>Get your team access to Udemy’s top 3,000 courses anytime, anywhere.</li>
                     <li> <a href="#">Try Studemy for Business</a> </li>
@@ -34,7 +38,7 @@
             </li>
 
             <li>
-                <a class="dropdown-toggle" data-toggle="dropdown">Become An Instructor</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">Become An Instructor</a>
                 <ul class="dropdown-menu">
                     <li>Turn what you know into an opportunity and reach millions around the world.</li>
                     <li> <a href="#">Learn more</a> </li>
