@@ -21,6 +21,9 @@ router.get('/profile', user_controller.profile_get);
 // GET request /edit-profile
 router.get('/edit-profile', user_controller.edit_profile_get);
 
+// GET request /edit-profile
+router.post('/edit-profile', user_controller.edit_profile_post);
+
 // GET request /logout
 router.get('/logout', user_controller.logout_get);
 
