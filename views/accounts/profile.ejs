@@ -1,6 +1,36 @@
 <% layout('layout') -%>
 
 <div class="container">
-    <p>Name: <%= user.firstname %></p>
-</div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <!--<img class="img-circle img-responsive img-center" src="">-->
+            <br>
+            <p>Name: <%= user.firstname %></p>
+            <p>Email: <%= user.email %></p>
 
+            <% if (user.address === '' || typeof user.address === 'undefined') { %> 
+                <p>Address: <span style="color: #c0392b; font-weight: bold">You have no address</span></p>
+            <% } else { %> 
+                <p>Address: <%= user.address %></p>
+            <% } %>
+
+            <a href="/edit-profile" class="btn btn-primary btn-md">Edit Profile</a>
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="text-center">Cart History</h2>
+
+            <table class="table table-striped sticky-header">
+                <thead>
+                    <tr>
+                        <th>Item's Name</th> 
+                        <th>Paid</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
