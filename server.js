@@ -14,6 +14,7 @@ const secret = require('./config/secret');
 const Category = require('./models/category');
 
 const adminRoutes = require('./routes/admin');
+const apiRoutes = require('./api/api');
 const mainRoutes = require('./routes/main');
 const userRoutes = require('./routes/user');
 
@@ -61,6 +62,7 @@ app.set('view engine', 'ejs');
 app.use(adminRoutes);
 app.use(mainRoutes);
 app.use(userRoutes);
+app.use('/api', apiRoutes);
 
 
 app.listen(port, (err) => {
