@@ -15,7 +15,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">Categories</a>
                 <ul class="dropdown-menu">
                     <% categories.forEach((category) => { %>
-                        <li><a href="/course/<%= category.name %>"><%= category.name %></a></li>
+                        <li><a href="/courses/<%= category._id %>"><%= category.name %></a></li>
                     <% }) %>
                 </ul>
             </li>
